@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.foodspot.screens.cart.CartScreen
 import com.example.foodspot.screens.detail.DetailScreen
 import com.example.foodspot.screens.home.HomeScreen
 import com.example.foodspot.screens.search.SearchScreen
@@ -26,6 +27,10 @@ fun AppNavigation() {
         composable<Routes.Detail> { backStackEntry ->
             val route = backStackEntry.toRoute<Routes.Detail>()
             DetailScreen(navController, route.restaurantId)
+        }
+
+        composable<Routes.Cart> {
+            CartScreen(navController)
         }
     }
 }
