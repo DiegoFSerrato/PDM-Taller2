@@ -26,7 +26,7 @@ class SearchViewModel(
         } else {
             val allRestaurants = repository.getAllRestaurants()
             _searchResults.value = allRestaurants.filter { restaurant ->
-                // Filtra por nombre del restaurante O por nombre de algún platillo (case-insensitive)
+                // Filtra por nombre del restaurante O por nombre de platillo (case-insensitive)
                 restaurant.name.contains(query, ignoreCase = true) ||
                         restaurant.menu.any { dish -> dish.name.contains(query, ignoreCase = true) }
             }

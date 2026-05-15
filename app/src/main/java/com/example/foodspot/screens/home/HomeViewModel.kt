@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.foodspot.data.model.Restaurant
 import com.example.foodspot.data.repository.FoodRepository
 import com.example.foodspot.data.repository.FoodRepositoryImpl
+import com.example.foodspot.data.repository.SessionRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +15,7 @@ class HomeViewModel(
 
     private val _categorizedRestaurants = MutableStateFlow<Map<String, List<Restaurant>>>(emptyMap())
     val categorizedRestaurants: StateFlow<Map<String, List<Restaurant>>> = _categorizedRestaurants.asStateFlow()
+    val favoriteRestaurants: StateFlow<Set<Int>> = SessionRepository.favoriteRestaurants
 
     init {
         loadRestaurants()
@@ -30,5 +32,8 @@ class HomeViewModel(
         }
 
         _categorizedRestaurants.value = groupedMap
+    }
+    fun toggleFavorite(restaurantId: Int) {
+        SessionRepository.toggleFavorite(restaurantId)
     }
 }
